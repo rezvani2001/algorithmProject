@@ -8,15 +8,16 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Main {
-    public static int minJ;
+public class LoadTree {
+    public static MyBST optimalBST;
 
-    public static void main(String[] args) throws FileNotFoundException {
+
+    public static long loadTree() throws FileNotFoundException {
         long time = System.currentTimeMillis();
 
         Scanner scanner = new Scanner(new BufferedReader(new FileReader("dictionary.txt")));
 
-        ArrayList<WordNode> words = new ArrayList<>(31806);
+        ArrayList<WordNode> words = new ArrayList<>(31850);
 
         while (scanner.hasNext()) {
             words.add(new WordNode(scanner.next(), scanner.next(), scanner.nextDouble()));
@@ -29,7 +30,11 @@ public class Main {
             optimalBST.insert(word);
         }
 
-        System.out.println(System.currentTimeMillis() - time);
+        time = System.currentTimeMillis() - time;
+        System.out.println(time);
+
+        LoadTree.optimalBST = optimalBST;
+        return time;
     }
 }
 

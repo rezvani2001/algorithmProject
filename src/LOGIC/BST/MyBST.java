@@ -4,7 +4,7 @@ package LOGIC.BST;
 import LOGIC.WordNode;
 
 public class MyBST {
-    BSTNode root;
+    public BSTNode root;
     public int size;
     public double cost;
 
@@ -20,7 +20,7 @@ public class MyBST {
             this.root = new BSTNode(word , 1);
             this.cost += root.worth();
         } else {
-            this.cost += root.insertNode(word , 1);
+            this.cost += root.insertNode(word);
         }
         size++;
     }
