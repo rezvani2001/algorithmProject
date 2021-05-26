@@ -1,7 +1,6 @@
 package LOGIC.BST;
 
 import LOGIC.WordNode;
-import com.sun.org.apache.xpath.internal.objects.XNull;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -19,15 +18,12 @@ public class BSTNode {
     public BSTNode right;
 
 
-    private AnchorPane GUIPane;
-
     public BSTNode(WordNode word, int depth) {
         this.possibility = word.possibility;
         this.key = word.key;
         this.value = word.value;
         this.depth = depth;
         this.left = this.right = null;
-        this.GUIPane = null;
     }
 
     public double insertNode(WordNode word) {
@@ -49,62 +45,54 @@ public class BSTNode {
         return this.possibility * this.depth;
     }
 
+    public VBox getGUINode() {
+        VBox pane = new VBox(10);
 
-    public AnchorPane getGUINode() {
-        AtomicBoolean leftTrigger = new AtomicBoolean(false);
-        AtomicBoolean rightTrigger = new AtomicBoolean(false);
+        VBox leftBox = new VBox(10);
 
-        if (this.GUIPane != null) {
-            return this.GUIPane;
-        } else {
-            AnchorPane pane = new AnchorPane();
+        Button button = new Button("key: " + this.key + "\nmeaning: " + this.value);
+        button.setPrefSize(150, 50);
 
-            VBox box = new VBox(10);
-            VBox leftBox = new VBox(10);
+        VBox rightBox = new VBox(10);
 
-            if (this.left != null){
-                Button leftNode = new Button("key: " + this.left.key + "\nmeaning: " + this.left.value);
+        AtomicBoolean trigger = new AtomicBoolean(false);
 
-                leftNode.setOnAction(event -> {
-                    if (leftTrigger.get()) {
-                        leftBox.getChildren().remove(this.left.getGUINode());
-                        leftTrigger.set(false);
-                    } else {
-                        leftBox.getChildren().addAll(this.left.getGUINode());
-                        leftTrigger.set(true);
-                    }
-                });
+        button.setOnAction(event -> {
+            if (!trigger.get()) {
+                if (this.left != null) {
+                    AnchorPane anchorPane = new AnchorPane();
+                    VBox child = this.left.getGUINode();
+                    anchorPane.getChildren().addAll(child);
+//                    anchorPane.setStyle("-fx-border-width: 2; -fx-border-color: black");
 
-                leftBox.getChildren().addAll(leftNode);
+                    AnchorPane.setLeftAnchor(child, 100.0);
 
+                    leftBox.getChildren().addAll(anchorPane);
+                }
+
+                if (this.right != null) {
+                    AnchorPane anchorPane = new AnchorPane();
+                    VBox child = this.right.getGUINode();
+                    anchorPane.getChildren().addAll(child);
+//                    anchorPane.setStyle("-fx-border-width: 2; -fx-border-color: black");
+
+                    AnchorPane.setLeftAnchor(child, 100.0);
+
+                    rightBox.getChildren().addAll(anchorPane);
+                }
+                trigger.set(true);
+            } else {
+                if (leftBox.getChildren().size() > 0)
+                    leftBox.getChildren().remove(0);
+                if (rightBox.getChildren().size() > 0)
+                    rightBox.getChildren().remove(0);
+                trigger.set(false);
             }
-            VBox rightBox = new VBox(10);
+        });
 
-            if (this.right != null){
-                Button rightNode = new Button("key: " + this.right.key + "\nmeaning: " + this.right.value);
-
-                rightNode.setOnAction(event -> {
-                    if (this.right != null) {
-                        if (rightTrigger.get()) {
-                            rightBox.getChildren().remove(this.right.getGUINode());
-                            rightTrigger.set(false);
-                        } else {
-                            rightBox.getChildren().addAll(this.right.getGUINode());
-                            rightTrigger.set(true);
-                        }
-                    }
-                });
-
-                rightBox.getChildren().addAll(rightNode);
-
-            }
-            box.getChildren().addAll(leftBox, rightBox);
-            pane.getChildren().addAll(box);
-
-            AnchorPane.setLeftAnchor(box, 30.0);
-
-            this.GUIPane = pane;
-            return pane;
-        }
+        pane.getChildren().addAll(leftBox, button, rightBox);
+        AnchorPane.setLeftAnchor(leftBox, 20.0);
+        AnchorPane.setLeftAnchor(rightBox, 20.0);
+        return pane;
     }
 }
