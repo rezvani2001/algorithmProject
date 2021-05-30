@@ -1,4 +1,4 @@
-package LOGIC;
+package Translator.LOGIC;
 
 public class WordNode {
     public double possibility;

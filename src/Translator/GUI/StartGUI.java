@@ -1,6 +1,6 @@
-package GUI;
+package Translator.GUI;
 
-import LOGIC.LoadTree;
+import Translator.LOGIC.LoadTree;
 import javafx.application.Application;
 import javafx.stage.Stage;
 

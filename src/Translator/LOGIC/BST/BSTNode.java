@@ -1,6 +1,6 @@
-package LOGIC.BST;
+package Translator.LOGIC.BST;
 
-import LOGIC.WordNode;
+import Translator.LOGIC.WordNode;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;

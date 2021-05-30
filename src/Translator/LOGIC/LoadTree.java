@@ -1,6 +1,6 @@
-package LOGIC;
+package Translator.LOGIC;
 
-import LOGIC.BST.MyBST;
+import Translator.LOGIC.BST.MyBST;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

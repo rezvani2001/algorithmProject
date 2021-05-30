@@ -1,7 +1,7 @@
-package LOGIC.BST;
+package Translator.LOGIC.BST;
 
 
-import LOGIC.WordNode;
+import Translator.LOGIC.WordNode;
 
 public class MyBST {
     public BSTNode root;
