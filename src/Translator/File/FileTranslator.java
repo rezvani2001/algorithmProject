@@ -2,7 +2,9 @@ package Translator.File;
 
 
 
+import Translator.Logger.LogInfo;
 import Translator.Translator;
+import javafx.scene.control.Alert;
 
 import java.io.*;
 
@@ -19,14 +21,15 @@ public class FileTranslator{
             @Override
             public void run() {
                 try {
+                    //TODO : for sadra : recheck this i cant remember if i wrote this completely or not!
                     BufferedReader reader = new BufferedReader(new FileReader(sourceFilePath));
                     BufferedWriter writer = new BufferedWriter(new FileWriter(destinationFilePath));
                     while(!reader.ready()){
                         try {
                             Thread.sleep(100);
                         } catch (InterruptedException e) {
-                            mainRef.PrintError("Reading Translator.File Attempt Failed, pleaseTryAgain");
-                            mainRef.log(new Event(e, "sleeping Thread interrupted"));
+                            mainRef.showAlert("Reading File Attempt Failed, pleaseTryAgain", Alert.AlertType.ERROR);
+                            mainRef.log(new LogInfo("sleeping Thread interrupted", e));
                         }
                     }
                     while(reader.readLine() != null){
@@ -37,7 +40,8 @@ public class FileTranslator{
                         writer.write('\n');
                     }
                 } catch (IOException e) {
-                    mainRef.cantOpenFile();
+                    mainRef.showAlert("Reading File Attempt Failed, pleaseTryAgain", Alert.AlertType.ERROR);
+                    mainRef.log(new LogInfo("Reading File Attempt Failed", e));
                 }
             }
         }).start();
