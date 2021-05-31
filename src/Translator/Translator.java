@@ -6,6 +6,8 @@ import javafx.application.Application;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
+import javax.management.remote.JMXServerErrorException;
+
 //one static OBST object and the translate method
 // uses that to translate a string and return its value
 
@@ -16,9 +18,13 @@ public class Translator extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         // start application from here ?
+        //INIT
         logger = new Logger(this);
-        logger.log(new LogInfo("hello"));
+        //INIT_End
+
+        //destructor
         logger.closeStream();
+        //destructor
     }
 
     public String translate (String value){
@@ -27,7 +33,9 @@ public class Translator extends Application {
     }
 
     public void showAlert(String message, Alert.AlertType alertType){
-        //TODO: shows an Alert of given type and with the given message
+        Alert alert = new Alert(alertType);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
     public static void main(String[] args){
