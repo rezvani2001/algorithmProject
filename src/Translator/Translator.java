@@ -36,7 +36,7 @@ public class Translator extends Application {
     public String translate (String value){
         value.trim();
         if(value.indexOf(' ') != -1){
-            //TODO : use StringBulider and translate the whole sentence by splitting
+            //TODO : use StringBuilder and translate the whole sentence by splitting
         }else {
 
         }
