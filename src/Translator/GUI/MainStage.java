@@ -30,12 +30,17 @@ public class MainStage extends Stage {
 
     private static final double BUTTONS_WIDTH = 170d;
     private static final double BUTTONS_HEIGHT = 50d;
+    private static final double TEXT_AREA_WIDTH = 485;
+    private static final double TEXT_AREA_HEIGHT = 300;
+
+
 
     public MainStage(Translator mainRef) {
         //stage init
         this.setWidth(1250);
         this.setHeight(800);
         this.setResizable(false);
+        this.setTitle("English To Farsi Translator");
         //#stage init
 //======================================================================================================================
         //EnglishTextSection
@@ -43,7 +48,7 @@ public class MainStage extends Stage {
         englishTextObj.setFont(Font.font(null, FontWeight.BOLD, 24));
 
         TextArea englishTextArea = new TextArea();
-        englishTextArea.setPrefSize(485, 300);
+        englishTextArea.setPrefSize(TEXT_AREA_WIDTH, TEXT_AREA_HEIGHT);
         englishTextArea.setPromptText("English Text To Be Translated To Farsi.");
 
         VBox englishTextBox = new VBox(englishTextObj, englishTextArea);
@@ -57,7 +62,7 @@ public class MainStage extends Stage {
         farsiTextObj.setFont(Font.font(null, FontWeight.BOLD, 24));
 
         TextArea farsiTextArea = new TextArea();
-        farsiTextArea.setPrefSize(485, 300);
+        farsiTextArea.setPrefSize(TEXT_AREA_WIDTH, TEXT_AREA_HEIGHT);
         farsiTextArea.setPromptText("Farsi Translation of The English Text.");
         farsiTextArea.setEditable(false);
 
@@ -90,12 +95,19 @@ public class MainStage extends Stage {
                         }
                     }
                 });
-
             }
         });
 
         Button translateFileButton = new Button("Translate File");
         translateFileButton.setPrefSize(BUTTONS_WIDTH,BUTTONS_HEIGHT);
+        translateFileButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                FileTranslationStage fTS = new FileTranslationStage();
+                fTS.initOwner(getThis());
+                fTS.showAndWait();
+            }
+        });
 
         //TODO : use fileChooser and get a file and translate it and write it to file
 
