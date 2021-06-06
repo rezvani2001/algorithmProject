@@ -4,6 +4,8 @@ import Translator.LOGIC.WordNode;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -94,5 +96,19 @@ public class BSTNode {
         AnchorPane.setLeftAnchor(leftBox, 20.0);
         AnchorPane.setLeftAnchor(rightBox, 20.0);
         return pane;
+    }
+
+
+
+    public String search(String key){
+        if (this.key.equals(key)){
+            return this.value;
+        } else if (this.key.compareTo(key) < 0){
+            if (this.left == null) return "?";
+            else return this.left.search(key);
+        } else {
+            if (this.right == null) return "?";
+            else return this.right.search(key);
+        }
     }
 }

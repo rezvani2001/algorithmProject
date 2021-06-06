@@ -29,37 +29,52 @@ public class Translator extends Application {
 
         logger = new Logger(this);
         //INIT_End
-        logger.log(new LogInfo("All BST has been created in " + loadingTime + " ms" , null));
+        logger.log(new LogInfo("All BST has been created in " + loadingTime + " ms", null));
 
-         new MainStage(this).show();
+        new MainStage(this).show();
 
         //destructor
-        logger.closeStream();
+//        logger.closeStream();
         //destructor
     }
 
-    public String translate (String value){
-        value.trim();
-        if(value.indexOf(' ') != -1){
-            //TODO : use StringBulider and translate the whole sentence by splitting
-        }else {
+    public String translate(String value) {
+        long time = System.currentTimeMillis();
+        StringBuilder result = new StringBuilder();
+        value = value.replaceAll("\n" , " ");
+        value = value.replaceAll("\t" , " ");
+        value = value.trim();
 
+        if (value.indexOf(' ') == -1) {
+            result.append(LoadTree.search(value) + "\n");
+        } else {
+            String[] words = value.split(" ");
+
+            for (int j = 0; j < words.length; j++) {
+                result.append(LoadTree.search(words[j]) + " ");
+            }
+
+            result.append("\n");
         }
-        //TODO : finds the translation of a word in the tree
-        return value;
+
+        this.logger.log(new LogInfo("search has been completed\n" +
+                "word: " + value + "\n" +
+                "time: " + (System.currentTimeMillis() - time) + "\n" +
+                "meaning: " + result.toString() , null));
+        return result.toString();
     }
 
-    public void showAlert(String message, Alert.AlertType alertType){
+    public void showAlert(String message, Alert.AlertType alertType) {
         Alert alert = new Alert(alertType);
         alert.setContentText(message);
         alert.showAndWait();
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         launch(args);
     }
 
-    public void log(LogInfo logInfo){
+    public void log(LogInfo logInfo) {
         logger.log(logInfo);
     }
 }

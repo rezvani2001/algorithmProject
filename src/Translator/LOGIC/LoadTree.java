@@ -39,5 +39,9 @@ public class LoadTree {
 
         return System.currentTimeMillis() - time;
     }
+
+    public static String search(String key){
+        return optimalBST[key.charAt(0) - 97].search(key);
+    }
 }
 

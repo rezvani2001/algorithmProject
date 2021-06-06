@@ -24,4 +24,8 @@ public class MyBST {
         }
         size++;
     }
+
+    public String search(String key){
+        return this.root.search(key);
+    }
 }
