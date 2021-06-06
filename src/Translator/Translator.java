@@ -1,17 +1,12 @@
 package Translator;
 
 import Translator.GUI.MainStage;
-import Translator.GUI.StartGUI;
+import Translator.LOGIC.LoadTree;
 import Translator.Logger.LogInfo;
 import Translator.Logger.Logger;
 import javafx.application.Application;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Tooltip;
 import javafx.stage.Stage;
-
-import javax.management.remote.JMXServerErrorException;
-import javax.swing.*;
-import java.util.Date;
 
 //one static OBST object and the translate method
 // uses that to translate a string and return its value
@@ -25,6 +20,12 @@ public class Translator extends Application {
         // start application from here ?
         //INIT
 //        primaryStage.close();
+
+        long loadingTime = LoadTree.loadTree();
+
+        System.out.println(loadingTime);
+
+
         logger = new Logger(this);
         //INIT_End
          new MainStage(this).show();

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class LoadTree {
-    public static MyBST optimalBST;
+    public static MyBST[] optimalBST;
 
 
     public static long loadTree() throws FileNotFoundException {
@@ -17,24 +17,27 @@ public class LoadTree {
 
         Scanner scanner = new Scanner(new BufferedReader(new FileReader("dictionary.txt")));
 
-        ArrayList<WordNode> words = new ArrayList<>(31850);
+        optimalBST = new MyBST[26];
+
+        ArrayList<WordNode>[] words = new ArrayList[26];
+
+        for (int i = 0; i < 26; i++) {
+            optimalBST[i] = new MyBST();
+            words[i] = new ArrayList<>();
+        }
 
         while (scanner.hasNext()) {
-            words.add(new WordNode(scanner.next(), scanner.next(), scanner.nextDouble()));
+            String key = scanner.next();
+            words[key.charAt(0) - 97].add(new WordNode(key , scanner.next() , scanner.nextDouble()));
         }
 
-        MyBST optimalBST = new MyBST();
-        optimalBST.insert(words.get(57));
-
-        for (WordNode word : words){
-            optimalBST.insert(word);
+        for (int i = 0; i < 26; i++) {
+            for (int j = 0; j < words[i].size(); j++) {
+                optimalBST[i].insert(words[i].get(j));
+            }
         }
 
-        time = System.currentTimeMillis() - time;
-        System.out.println(time);
-
-        LoadTree.optimalBST = optimalBST;
-        return time;
+        return System.currentTimeMillis() - time;
     }
 }
 
