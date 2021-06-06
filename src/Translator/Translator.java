@@ -1,16 +1,15 @@
 package Translator;
 
 import Translator.GUI.MainStage;
-import Translator.GUI.StartGUI;
+import Translator.GUI.TreeStage;
+import Translator.LOGIC.LoadTree;
 import Translator.Logger.LogInfo;
 import Translator.Logger.Logger;
 import javafx.application.Application;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Tooltip;
+import javafx.scene.control.DateCell;
 import javafx.stage.Stage;
 
-import javax.management.remote.JMXServerErrorException;
-import javax.swing.*;
 import java.util.Date;
 
 //one static OBST object and the translate method
@@ -25,9 +24,15 @@ public class Translator extends Application {
         // start application from here ?
         //INIT
 //        primaryStage.close();
+
+        long loadingTime = LoadTree.loadTree();
+
         logger = new Logger(this);
         //INIT_End
+        logger.log(new LogInfo("All BST has been created in " + loadingTime + " ms" , null));
+
          new MainStage(this).show();
+
         //destructor
         logger.closeStream();
         //destructor
@@ -41,7 +46,7 @@ public class Translator extends Application {
 
         }
         //TODO : finds the translation of a word in the tree
-        return "";
+        return value;
     }
 
     public void showAlert(String message, Alert.AlertType alertType){
