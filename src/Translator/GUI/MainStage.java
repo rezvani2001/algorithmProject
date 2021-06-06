@@ -37,12 +37,13 @@ public class MainStage extends Stage {
         //EnglishTextSection
         Text englishTextObj = new Text("English Text : ");
         englishTextObj.setFont(Font.font(null, FontWeight.BOLD, 24));
-
         TextArea englishTextArea = new TextArea();
+        englishTextArea.setId("EnglishInputText");
         englishTextArea.setPrefSize(485, 300);
         englishTextArea.setPromptText("English Text To Be Translated To Farsi.");
 
         VBox englishTextBox = new VBox(englishTextObj, englishTextArea);
+        englishTextBox.setId("EnglishBoxContainer");
         englishTextBox.setSpacing(10);
         englishTextBox.setAlignment(Pos.TOP_LEFT);
         englishTextBox.setPadding(new Insets(10, 15, 10, 15));
@@ -54,6 +55,7 @@ public class MainStage extends Stage {
 
         TextArea farsiTextArea = new TextArea();
         farsiTextArea.setPrefSize(485, 300);
+        farsiTextArea.setId("farsiTranslationText");
         farsiTextArea.setPromptText("Farsi Translation of The English Text.");
         farsiTextArea.setEditable(false);
 
@@ -73,7 +75,7 @@ public class MainStage extends Stage {
         this.setScene(mainScene);
     }
 
-    private MainStage getThis(){
+    private MainStage getThis() {
         return this;
     }
 
