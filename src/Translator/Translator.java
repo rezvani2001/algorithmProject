@@ -31,11 +31,15 @@ public class Translator extends Application {
         //INIT_End
         logger.log(new LogInfo("All BST has been created in " + loadingTime + " ms", null));
 
-        new MainStage(this).show();
+        MainStage stage = new MainStage(this);
+        stage.show();
 
-        //destructor
-//        logger.closeStream();
-        //destructor
+        stage.setOnCloseRequest(event ->{
+            //destructor
+        logger.closeStream();
+            //destructor
+        });
+
     }
 
     public String translate(String value) {
