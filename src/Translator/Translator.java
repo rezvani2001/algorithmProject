@@ -47,7 +47,7 @@ public class Translator extends Application {
 
         }
         //TODO : finds the translation of a word in the tree
-        return "";
+        return value;
     }
 
     public void showAlert(String message, Alert.AlertType alertType){
