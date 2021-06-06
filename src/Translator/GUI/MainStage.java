@@ -151,6 +151,7 @@ public class MainStage extends Stage {
         ap.setId("mainContainer");
 
         Scene mainScene = new Scene(ap);
+        mainScene.getStylesheets().add("Translator/GUI/CssFiles/MainStageCssFile.css");
         this.setScene(mainScene);
     }
 

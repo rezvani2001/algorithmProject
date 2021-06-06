@@ -1,7 +1,15 @@
 .root {
-    -fx-background-color: black;
+    -fx-background-color: #fff5eb;
 }
 
 .button {
+    -fx-background-color: #deedf0;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-font-family: "Microsoft Sans Serif";
+}
 
+.button:hover {
+    -fx-background-color: blue;
+    -fx-text-fill: white;
 }
