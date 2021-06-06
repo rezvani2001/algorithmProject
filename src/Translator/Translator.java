@@ -1,12 +1,16 @@
 package Translator;
 
 import Translator.GUI.MainStage;
+import Translator.GUI.TreeStage;
 import Translator.LOGIC.LoadTree;
 import Translator.Logger.LogInfo;
 import Translator.Logger.Logger;
 import javafx.application.Application;
 import javafx.scene.control.Alert;
+import javafx.scene.control.DateCell;
 import javafx.stage.Stage;
+
+import java.util.Date;
 
 //one static OBST object and the translate method
 // uses that to translate a string and return its value
@@ -23,12 +27,13 @@ public class Translator extends Application {
 
         long loadingTime = LoadTree.loadTree();
 
-        System.out.println(loadingTime);
-
-
         logger = new Logger(this);
         //INIT_End
-         new MainStage(this).show();
+        logger.log(new LogInfo("All BST has been created in " + loadingTime + " ms" , null));
+
+//         new MainStage(this).show();
+
+        new TreeStage().showAndWait();
         //destructor
         logger.closeStream();
         //destructor
