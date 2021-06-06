@@ -113,6 +113,17 @@ public class MainStage extends Stage {
 
         Button seeTreeButton = new Button("See Tree");
         seeTreeButton.setPrefSize(BUTTONS_WIDTH,BUTTONS_HEIGHT);
+        seeTreeButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                TreeStage tS = new TreeStage();
+                tS.initOwner(getThis());
+                getThis().hide();
+                tS.showAndWait();
+                getThis().show();
+
+            }
+        });
         //TODO : open treeStage and make this its owner
 
         Button exitButton = new Button("Exit");

@@ -31,9 +31,8 @@ public class Translator extends Application {
         //INIT_End
         logger.log(new LogInfo("All BST has been created in " + loadingTime + " ms" , null));
 
-//         new MainStage(this).show();
+         new MainStage(this).show();
 
-        new TreeStage().showAndWait();
         //destructor
         logger.closeStream();
         //destructor
