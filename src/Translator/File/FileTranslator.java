@@ -1,14 +1,13 @@
 package Translator.File;
 
 
-
 import Translator.Logger.LogInfo;
 import Translator.Translator;
 import javafx.scene.control.Alert;
 
 import java.io.*;
 
-public class FileTranslator{
+public class FileTranslator {
 
     Translator mainRef;
 
@@ -16,7 +15,7 @@ public class FileTranslator{
         this.mainRef = mainRef;
     }
 
-    public void translate(String sourceFilePath, String destinationFilePath){
+    public void translate(String sourceFilePath, String destinationFilePath) {
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -24,7 +23,7 @@ public class FileTranslator{
                     //TODO : for sadra : recheck this i cant remember if i wrote this completely or not!
                     BufferedReader reader = new BufferedReader(new FileReader(sourceFilePath));
                     BufferedWriter writer = new BufferedWriter(new FileWriter(destinationFilePath));
-                    while(!reader.ready()){
+                    while (!reader.ready()) {
                         try {
                             Thread.sleep(100);
                         } catch (InterruptedException e) {
@@ -32,7 +31,7 @@ public class FileTranslator{
                             mainRef.log(new LogInfo("sleeping Thread interrupted", e));
                         }
                     }
-                    while(reader.readLine() != null){
+                    while (reader.readLine() != null) {
                         String currentLine = reader.readLine();
                         for (String value : currentLine.split(" ")) {
                             writer.write(mainRef.translate(value));

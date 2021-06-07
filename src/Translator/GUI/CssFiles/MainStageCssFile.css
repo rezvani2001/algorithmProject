@@ -3,13 +3,17 @@
 }
 
 .button {
-    -fx-background-color: #deedf0;
+    -fx-background-color: #fb9300;
     -fx-border-radius: 8px;
     -fx-background-radius: 8px;
     -fx-font-family: "Microsoft Sans Serif";
 }
 
 .button:hover {
-    -fx-background-color: blue;
+    -fx-background-color: #ff9350;
     -fx-text-fill: white;
+}
+
+.text-area {
+    -fx-background-color: orange;
 }
