@@ -8,10 +8,10 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import sun.plugin2.gluegen.runtime.StructAccessor;
@@ -26,7 +26,7 @@ public class FileTranslationStage extends Stage {
 
     public FileTranslationStage(Translator mainRef) {
         //engFileSection
-        Text englishFileText = new Text("English File : ");
+        Label englishFileText = new Label("English File : ");
         TextField engFilePathTextField = new TextField();
         Button englishFileSelectionButton = new Button("Select Source");
         englishFileSelectionButton.setPrefSize(BUTTON_WIDTH, BUTTON_HEIGHT);
@@ -49,7 +49,8 @@ public class FileTranslationStage extends Stage {
         //#engFileSelection
 //======================================================================================================================
         //TranslatedFileSection
-/*        Text translatedFileText = new Text("Translation File : ");
+
+/*
         TextField translatedFilePathTextField = new TextField();
         Button translatedFileSelectionButton = new Button("Select Destination");
         translatedFileSelectionButton.setPrefSize(BUTTON_WIDTH, BUTTON_HEIGHT);

@@ -3,9 +3,16 @@
 }
 
 .button {
-
+    -fx-background-color: #e4efe7;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
 }
 
-.text-area {
+.button:hover {
+    -fx-background-color: #064420;
+    -fx-text-fill: white;
+}
 
+.label {
+    -fx-min-width: 95px;
 }
