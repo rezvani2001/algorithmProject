@@ -14,9 +14,5 @@
 }
 
 .label {
-    -fx-min-width: 200px;
-}
-
-.text-area {
-
+    -fx-min-width: 95px;
 }
