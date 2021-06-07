@@ -77,7 +77,9 @@ public class FileTranslationStage extends Stage {
         this.setHeight(150);
         this.setResizable(false);
         this.setTitle("Choose File To Translate & To Save Translation To");
-        this.setScene(new Scene(mainBox));
+        Scene fileTranslationScene = new Scene(mainBox);
+        fileTranslationScene.getStylesheets().add("Translator/GUI/CssFiles/FileTranslationCssFile.css");
+        this.setScene(fileTranslationScene);
 
     }
 }
