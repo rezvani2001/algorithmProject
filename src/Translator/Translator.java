@@ -34,12 +34,11 @@ public class Translator extends Application {
         MainStage stage = new MainStage(this);
         stage.show();
 
+        //destructor
         stage.setOnCloseRequest(event ->{
-            //destructor
         logger.closeStream();
-            //destructor
         });
-
+        //destructor
     }
 
     public String translate(String value) {
@@ -61,7 +60,7 @@ public class Translator extends Application {
             result.append("\n");
         }
 
-        this.logger.log(new LogInfo("search has been completed\n" +
+        this.logger.log(new LogInfo("search has been completed\n\n" +
                 "word: " + value + "\n" +
                 "time: " + (System.currentTimeMillis() - time) + "\n" +
                 "meaning: " + result.toString() , null));

@@ -8,7 +8,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+
+import java.io.File;
 
 
 public class FileTranslationStage extends Stage {
@@ -24,7 +27,19 @@ public class FileTranslationStage extends Stage {
         englishFileSelectionButton.setPrefSize(BUTTON_WIDTH, BUTTON_HEIGHT);
         //TODO : SADRA : make buttons work
 
-        HBox englishFileBox = new HBox(englishFileText, engFilePathTextField,englishFileSelectionButton);
+        englishFileSelectionButton.setOnAction(event -> {
+            FileChooser fileChooser = new FileChooser();
+
+            fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter(
+                    "TEXT files(*.txt)" , "*.txt"));
+
+            File selectedFile = fileChooser.showOpenDialog(this);
+            if (selectedFile != null){
+                engFilePathTextField.setText(selectedFile.getAbsolutePath());
+            }
+        });
+
+        HBox englishFileBox = new HBox(englishFileText, engFilePathTextField, englishFileSelectionButton);
         englishFileBox.setAlignment(Pos.CENTER_LEFT);
         englishFileBox.setSpacing(30d);
         //#engFileSelection
@@ -35,7 +50,19 @@ public class FileTranslationStage extends Stage {
         Button translatedFileSelectionButton = new Button("Select Destination");
         translatedFileSelectionButton.setPrefSize(BUTTON_WIDTH, BUTTON_HEIGHT);
 
-        HBox translatedFileBox = new HBox(translatedFileText,translatedFilePathTextField, translatedFileSelectionButton);
+        translatedFileSelectionButton.setOnAction(event -> {
+            FileChooser fileChooser = new FileChooser();
+
+            fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter(
+                    "TEXT files(*.txt)" , "*.txt"));
+
+            File selectedFile = fileChooser.showOpenDialog(this);
+            if (selectedFile != null){
+                translatedFilePathTextField.setText(selectedFile.getAbsolutePath());
+            }
+        });
+
+        HBox translatedFileBox = new HBox(translatedFileText, translatedFilePathTextField, translatedFileSelectionButton);
         translatedFileBox.setAlignment(Pos.CENTER_LEFT);
         translatedFileBox.setSpacing(15d);
         //#TranslatedFileSection
