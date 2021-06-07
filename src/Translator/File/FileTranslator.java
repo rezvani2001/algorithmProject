@@ -31,13 +31,16 @@ public class FileTranslator {
                             mainRef.log(new LogInfo("sleeping Thread interrupted", e));
                         }
                     }
-                    while (reader.readLine() != null) {
+                    while (true) {
                         String currentLine = reader.readLine();
+                        if(currentLine == null) break;
                         for (String value : currentLine.split(" ")) {
                             writer.write(mainRef.translate(value));
                         }
                         writer.write('\n');
                     }
+                    reader.close();
+                    writer.close();
                 } catch (IOException e) {
                     mainRef.showAlert("Reading File Attempt Failed, pleaseTryAgain", Alert.AlertType.ERROR);
                     mainRef.log(new LogInfo("Reading File Attempt Failed", e));

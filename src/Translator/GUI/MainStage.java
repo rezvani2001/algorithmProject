@@ -88,7 +88,7 @@ public class MainStage extends Stage {
         Button translateFileButton = new Button("Translate File");
         translateFileButton.setPrefSize(BUTTONS_WIDTH, BUTTONS_HEIGHT);
         translateFileButton.setOnAction(event -> {
-            FileTranslationStage fTS = new FileTranslationStage();
+            FileTranslationStage fTS = new FileTranslationStage(mainRef);
             fTS.initOwner(getThis());
             fTS.initModality(Modality.APPLICATION_MODAL);
             fTS.showAndWait();

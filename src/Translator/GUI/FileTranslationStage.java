@@ -1,5 +1,9 @@
 package Translator.GUI;
 
+import Translator.Translator;
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -10,6 +14,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import sun.plugin2.gluegen.runtime.StructAccessor;
 
 import java.io.File;
 
@@ -19,14 +24,13 @@ public class FileTranslationStage extends Stage {
     private final static double BUTTON_HEIGHT = 40;
 
 
-    public FileTranslationStage() {
+    public FileTranslationStage(Translator mainRef) {
         //engFileSection
         Text englishFileText = new Text("English File : ");
         TextField engFilePathTextField = new TextField();
         Button englishFileSelectionButton = new Button("Select Source");
         englishFileSelectionButton.setPrefSize(BUTTON_WIDTH, BUTTON_HEIGHT);
         //TODO : SADRA : make buttons work
-
         englishFileSelectionButton.setOnAction(event -> {
             FileChooser fileChooser = new FileChooser();
 
@@ -45,7 +49,7 @@ public class FileTranslationStage extends Stage {
         //#engFileSelection
 //======================================================================================================================
         //TranslatedFileSection
-        Text translatedFileText = new Text("Translation File : ");
+/*        Text translatedFileText = new Text("Translation File : ");
         TextField translatedFilePathTextField = new TextField();
         Button translatedFileSelectionButton = new Button("Select Destination");
         translatedFileSelectionButton.setPrefSize(BUTTON_WIDTH, BUTTON_HEIGHT);
@@ -56,7 +60,7 @@ public class FileTranslationStage extends Stage {
             fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter(
                     "TEXT files(*.txt)" , "*.txt"));
 
-            File selectedFile = fileChooser.showOpenDialog(this);
+            File selectedFile = fileChooser.showSaveDialog(this);
             if (selectedFile != null){
                 translatedFilePathTextField.setText(selectedFile.getAbsolutePath());
             }
@@ -64,10 +68,34 @@ public class FileTranslationStage extends Stage {
 
         HBox translatedFileBox = new HBox(translatedFileText, translatedFilePathTextField, translatedFileSelectionButton);
         translatedFileBox.setAlignment(Pos.CENTER_LEFT);
-        translatedFileBox.setSpacing(15d);
+        translatedFileBox.setSpacing(15d);*/ // !!NOT GOING TO ASK FOR A SECOND FILE!!
         //#TranslatedFileSection
 //======================================================================================================================
-        VBox mainBox = new VBox(englishFileBox, translatedFileBox);
+        //TranslateButton
+        Button translateButton = new Button("Translate");
+        translateButton.setPrefSize(BUTTON_WIDTH, BUTTON_HEIGHT);
+        translateButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(engFilePathTextField.getText() != null)
+                        mainRef.translateFile(engFilePathTextField.getText());
+                        Platform.runLater(new Runnable() {
+                            @Override
+                            public void run() {
+                                getThis().close();
+                            }
+                        });
+                    }
+                }).start();
+
+            }
+        });
+        //#TranslateButton
+//======================================================================================================================
+        VBox mainBox = new VBox(englishFileBox, translateButton);
         mainBox.setAlignment(Pos.CENTER);
         mainBox.setPadding(new Insets(15));
         mainBox.setAlignment(Pos.CENTER);
@@ -82,4 +110,9 @@ public class FileTranslationStage extends Stage {
         this.setScene(fileTranslationScene);
 
     }
+
+    private FileTranslationStage getThis(){
+        return this;
+    }
+
 }

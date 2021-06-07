@@ -1,15 +1,18 @@
 package Translator;
 
+import Translator.File.FileTranslator;
 import Translator.GUI.MainStage;
 import Translator.GUI.TreeStage;
 import Translator.LOGIC.LoadTree;
 import Translator.Logger.LogInfo;
 import Translator.Logger.Logger;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DateCell;
 import javafx.stage.Stage;
 
+import java.util.Arrays;
 import java.util.Date;
 
 //one static OBST object and the translate method
@@ -31,12 +34,14 @@ public class Translator extends Application {
         //INIT_End
         logger.log(new LogInfo("All BST has been created in " + loadingTime + " ms", null));
 
+
         MainStage stage = new MainStage(this);
-        stage.show();
+        stage.showAndWait();
 
         //destructor
-        stage.setOnCloseRequest(event ->{
         logger.closeStream();
+        stage.setOnCloseRequest(event ->{
+            logger.closeStream();
         });
         //destructor
     }
@@ -47,30 +52,53 @@ public class Translator extends Application {
         value = value.replaceAll("\n" , " ");
         value = value.replaceAll("\t" , " ");
         value = value.trim();
-
+        value = value.toLowerCase();
         if (value.indexOf(' ') == -1) {
-            result.append(LoadTree.search(value) + "\n");
+            result.append(LoadTree.search(value)).append("\n");
         } else {
             String[] words = value.split(" ");
 
             for (int j = 0; j < words.length; j++) {
-                result.append(LoadTree.search(words[j]) + " ");
+                if(!isWord(words[j])){
+                    result.append(words[j]).append(' ');
+                }else{
+                    result.append(LoadTree.search(words[j])).append(' ');
+                }
+
             }
 
             result.append("\n");
         }
 
-        this.logger.log(new LogInfo("search has been completed\n\n" +
-                "word: " + value + "\n" +
-                "time: " + (System.currentTimeMillis() - time) + "\n" +
-                "meaning: " + result.toString() , null));
+        this.logger.log(new LogInfo("Translation has been completed\n\n" +
+                "Word: " + value + "\n" +
+                "Search Time: " + (System.currentTimeMillis() - time) + "\n" +
+                "Translated To: " + result.toString() , null));
         return result.toString();
     }
 
+    public void translateFile(String filePath){
+        FileTranslator fT = new FileTranslator(this);
+        fT.translate(filePath,(filePath.split("\\.")[0] + "(translated).txt"));
+    }
+
     public void showAlert(String message, Alert.AlertType alertType) {
-        Alert alert = new Alert(alertType);
-        alert.setContentText(message);
-        alert.showAndWait();
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                Alert alert = new Alert(alertType);
+                alert.setContentText(message);
+                alert.showAndWait();
+            }
+        });
+
+    }
+
+    private boolean isWord(String str){
+        for (int i = 0; i < str.length(); i++) {
+            if(str.charAt(i) > 122 || str.charAt(i) < 97) return false;
+        }
+        return true;
     }
 
     public static void main(String[] args) {

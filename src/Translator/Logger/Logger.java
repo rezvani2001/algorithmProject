@@ -6,14 +6,14 @@ import javafx.scene.control.Alert;
 import java.io.*;
 
 public class Logger {
-    BufferedWriter fos;
+    FileWriter fos;
     Translator mainRef;
     private final static String EVENT_BORDER = "================================";
 
     public Logger(Translator mainReference) {
         this.mainRef = mainReference;
         try {
-            fos = new BufferedWriter(new FileWriter("TnsLog.txt"));
+            fos = new FileWriter("TnsLog.txt", true);
         } catch (Exception e) {
             mainRef.showAlert("Couldn't Access Log FIle Please restart", Alert.AlertType.ERROR);
             e.printStackTrace();

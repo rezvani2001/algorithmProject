@@ -41,6 +41,7 @@ public class LoadTree {
     }
 
     public static String search(String key){
+        if(key.charAt(0) < 97 || key.charAt(0) > 122) return "?";
         return optimalBST[key.charAt(0) - 97].search(key);
     }
 }
