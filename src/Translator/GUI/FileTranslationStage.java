@@ -7,6 +7,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -14,9 +15,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import sun.plugin2.gluegen.runtime.StructAccessor;
 
 import java.io.File;
+import java.util.concurrent.atomic.AtomicReference;
 
 
 public class FileTranslationStage extends Stage {
@@ -28,6 +29,7 @@ public class FileTranslationStage extends Stage {
         //engFileSection
         Label englishFileText = new Label("English File : ");
         TextField engFilePathTextField = new TextField();
+        AtomicReference<File> selectedFile = new AtomicReference<>();
         Button englishFileSelectionButton = new Button("Select Source");
         englishFileSelectionButton.setPrefSize(BUTTON_WIDTH, BUTTON_HEIGHT);
         //TODO : SADRA : make buttons work
@@ -37,9 +39,9 @@ public class FileTranslationStage extends Stage {
             fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter(
                     "TEXT files(*.txt)" , "*.txt"));
 
-            File selectedFile = fileChooser.showOpenDialog(this);
-            if (selectedFile != null){
-                engFilePathTextField.setText(selectedFile.getAbsolutePath());
+             selectedFile.set(fileChooser.showOpenDialog(this));
+            if (selectedFile.get() != null){
+                engFilePathTextField.setText(selectedFile.get().getAbsolutePath());
             }
         });
 
@@ -82,7 +84,7 @@ public class FileTranslationStage extends Stage {
                     @Override
                     public void run() {
                         if(engFilePathTextField.getText() != null)
-                        mainRef.translateFile(engFilePathTextField.getText());
+                        mainRef.translateFile(selectedFile.get().getPath());
                         Platform.runLater(new Runnable() {
                             @Override
                             public void run() {
@@ -94,6 +96,7 @@ public class FileTranslationStage extends Stage {
 
             }
         });
+
         //#TranslateButton
 //======================================================================================================================
         VBox mainBox = new VBox(englishFileBox, translateButton);

@@ -10,6 +10,7 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DateCell;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.util.Arrays;
@@ -79,7 +80,7 @@ public class Translator extends Application {
 
     public void translateFile(String filePath){
         FileTranslator fT = new FileTranslator(this);
-        fT.translate(filePath,(filePath.split("\\.")[0] + "(translated).txt"));
+        fT.translate(filePath , filePath + "\\..\\(translated).txt");
     }
 
     public void showAlert(String message, Alert.AlertType alertType) {

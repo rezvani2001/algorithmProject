@@ -33,11 +33,8 @@ public class FileTranslator {
                     }
                     while (true) {
                         String currentLine = reader.readLine();
-                        if(currentLine == null) break;
-                        for (String value : currentLine.split(" ")) {
-                            writer.write(mainRef.translate(value));
-                        }
-                        writer.write('\n');
+                        if (currentLine == null) break;
+                        writer.write(mainRef.translate(currentLine));
                     }
                     reader.close();
                     writer.close();
