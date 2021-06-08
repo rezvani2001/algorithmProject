@@ -40,7 +40,6 @@ public class Translator extends Application {
         stage.showAndWait();
 
         //destructor
-        logger.closeStream();
         stage.setOnCloseRequest(event ->{
             logger.closeStream();
         });
