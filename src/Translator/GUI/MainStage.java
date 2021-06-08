@@ -102,9 +102,11 @@ public class MainStage extends Stage {
             TreeStage tS = new TreeStage();
             tS.initOwner(getThis());
             getThis().hide();
-            tS.showAndWait();
-            getThis().show();
+            tS.show();
 
+            tS.setOnCloseRequest(event1 -> {
+                getThis().show();
+            });
         });
         //TODO : open treeStage and make this its owner
 

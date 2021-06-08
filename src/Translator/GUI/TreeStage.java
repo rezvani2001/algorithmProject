@@ -45,7 +45,6 @@ public class TreeStage extends Stage {
         this.setScene(new Scene(pane));
         this.setWidth(1250);
         this.setHeight(800);
-        this.setMaximized(false);
         this.setResizable(false);
     }
 }
