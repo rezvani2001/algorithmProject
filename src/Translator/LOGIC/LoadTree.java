@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class LoadTree {
     public static MyBST[] optimalBST;
-
+    public static long buildTime;
 
     public static long loadTree() throws FileNotFoundException {
         long time = System.currentTimeMillis();
@@ -28,7 +28,7 @@ public class LoadTree {
 
         while (scanner.hasNext()) {
             String key = scanner.next();
-            words[key.charAt(0) - 97].add(new WordNode(key , scanner.next() , scanner.nextDouble()));
+            words[key.charAt(0) - 97].add(new WordNode(key, scanner.next(), scanner.nextDouble()));
         }
 
         for (int i = 0; i < 26; i++) {
@@ -37,11 +37,12 @@ public class LoadTree {
             }
         }
 
-        return System.currentTimeMillis() - time;
+        buildTime = System.currentTimeMillis() - time;
+        return buildTime;
     }
 
-    public static String search(String key){
-        if(key.charAt(0) < 97 || key.charAt(0) > 122) return "?";
+    public static String search(String key) {
+        if (key.charAt(0) < 97 || key.charAt(0) > 122) return "?";
         return optimalBST[key.charAt(0) - 97].search(key);
     }
 }

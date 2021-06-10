@@ -1,14 +1,12 @@
 package Translator.GUI;
 
+import Translator.LOGIC.LoadTree;
 import Translator.Translator;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -50,6 +48,11 @@ public class MainStage extends Stage {
         englishTextBox.setId("englishPartContainer");
         englishTextBox.setPadding(new Insets(10, 15, 10, 15));
         //#EnglishTextSection
+
+        // treeBuildTimeSection
+        Label buildTime = new Label("tree has been maid in " + LoadTree.buildTime + " ms");
+        englishTextBox.getChildren().addAll(buildTime);
+        // treeBuildTimeSection
 //======================================================================================================================
         //PersianTextSection
         Text farsiTextObj = new Text("Farsi Translation : ");
@@ -68,13 +71,20 @@ public class MainStage extends Stage {
         farsiTranslationBox.setId("farsiTranslationContainer");
         farsiTranslationBox.setPadding(new Insets(10, 15, 10, 15));
         //#PersianTextSection
+
+
+        // search time section
+        Label translationTime = new Label("translation time: ");
+        farsiTranslationBox.getChildren().addAll(translationTime);
+        // search time section
 //======================================================================================================================
         //ButtonsSection
         Button translateTextButton = new Button("Translate Text");
         translateTextButton.setPrefSize(BUTTONS_WIDTH, BUTTONS_HEIGHT);
         translateTextButton.setOnAction(event -> Platform.runLater(() -> {
             int startIndex = 0;
-            int endIndex = 0;
+            int endIndex;
+            long time = System.currentTimeMillis();
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < englishTextArea.getText().length(); i++) {
                 if (englishTextArea.getText().charAt(i) == '\n' || i >= englishTextArea.getText().length() - 1) {
@@ -85,6 +95,7 @@ public class MainStage extends Stage {
                     startIndex = endIndex;
                 }
             }
+            translationTime.setText("translation time: " + (System.currentTimeMillis() - time) + " ms");
         }));
 
         Button translateFileButton = new Button("Translate File");
@@ -96,7 +107,6 @@ public class MainStage extends Stage {
             fTS.showAndWait();
         });
 
-        //TODO : use fileChooser and get a file and translate it and write it to file
 
         Button seeTreeButton = new Button("See Tree");
         seeTreeButton.setPrefSize(BUTTONS_WIDTH, BUTTONS_HEIGHT);
@@ -106,17 +116,13 @@ public class MainStage extends Stage {
             getThis().hide();
             tS.show();
 
-            tS.setOnCloseRequest(event1 -> {
-                getThis().show();
-            });
+            tS.setOnCloseRequest(event1 -> getThis().show());
         });
-        //TODO : open treeStage and make this its owner
 
         Button exitButton = new Button("Exit");
         exitButton.setPrefSize(BUTTONS_WIDTH, BUTTONS_HEIGHT);
         exitButton.setOnAction(event -> {
             Alert exitAlert = new Alert(Alert.AlertType.CONFIRMATION);
-            //TODO : check if a file is being translated
             exitAlert.setTitle("Exit Confirmation");
             exitAlert.setHeaderText("Do You Want To Exit?");
             exitAlert.setContentText("You Are About To Exit The Translator!");

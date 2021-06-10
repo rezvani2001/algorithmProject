@@ -13,11 +13,4 @@ public class LogInfo {
         date = new Date();
     }
 
-    public LogInfo(String message) {
-        this(message, null);
-    }
-
-    public LogInfo(Exception exception) {
-        this("N/A", exception);
-    }
 }
