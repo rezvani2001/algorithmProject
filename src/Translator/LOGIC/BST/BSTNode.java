@@ -4,8 +4,6 @@ import Translator.LOGIC.WordNode;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -53,7 +51,7 @@ public class BSTNode {
         VBox leftBox = new VBox(10);
 
         Button button = new Button("key: " + this.key + "\nmeaning: " + this.value);
-        button.setPrefSize(150, 50);
+        button.setPrefSize(150, 55);
 
         VBox rightBox = new VBox(10);
 
@@ -69,7 +67,7 @@ public class BSTNode {
 
                     AnchorPane.setLeftAnchor(child, 100.0);
 
-                    leftBox.getChildren().addAll(anchorPane);
+                    leftBox.getChildren().add(anchorPane);
                 }
 
                 if (this.right != null) {
