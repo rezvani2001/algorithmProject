@@ -7,10 +7,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
@@ -37,10 +34,10 @@ public class FileTranslationStage extends Stage {
             FileChooser fileChooser = new FileChooser();
 
             fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter(
-                    "TEXT files(*.txt)" , "*.txt"));
+                    "TEXT files(*.txt)", "*.txt"));
 
-             selectedFile.set(fileChooser.showOpenDialog(this));
-            if (selectedFile.get() != null){
+            selectedFile.set(fileChooser.showOpenDialog(this));
+            if (selectedFile.get() != null) {
                 engFilePathTextField.setText(selectedFile.get().getAbsolutePath());
             }
         });
@@ -77,25 +74,18 @@ public class FileTranslationStage extends Stage {
         //TranslateButton
         Button translateButton = new Button("Translate");
         translateButton.setPrefSize(BUTTON_WIDTH, BUTTON_HEIGHT);
-        translateButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if(engFilePathTextField.getText() != null)
-                        mainRef.translateFile(selectedFile.get().getPath());
-                        Platform.runLater(new Runnable() {
-                            @Override
-                            public void run() {
-                                getThis().close();
-                            }
-                        });
-                    }
-                }).start();
-
+        translateButton.setOnAction(event -> new Thread(() -> {
+            if (!engFilePathTextField.getText().equals("")) {
+                mainRef.translateFile(selectedFile.get().getPath());
+                Platform.runLater(() -> getThis().close());
             }
-        });
+            else {
+                Platform.runLater(() -> {
+                    Alert alert = new Alert(Alert.AlertType.ERROR, "Please Choose A File First", ButtonType.OK);
+                    alert.show();
+                });
+            }
+        }).start());
 
         //#TranslateButton
 //======================================================================================================================
@@ -115,7 +105,7 @@ public class FileTranslationStage extends Stage {
 
     }
 
-    private FileTranslationStage getThis(){
+    private FileTranslationStage getThis() {
         return this;
     }
 
