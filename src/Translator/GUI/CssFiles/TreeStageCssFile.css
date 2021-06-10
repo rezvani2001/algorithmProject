@@ -1,0 +1,16 @@
+#TreeStageButtons {
+    -fx-background-color: #E1F5FE;
+}
+
+#TreeStageButtons .button {
+    -fx-background-color: lightblue;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-pref-width: 40px;
+    -fx-font-weight: bolder;
+    -fx-font-family: "Microsoft Sans Serif";
+}
+
+#TreeStageButtons .button:hover {
+    -fx-background-color: blue;
+}
