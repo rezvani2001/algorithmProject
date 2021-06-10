@@ -81,7 +81,8 @@ public class FileTranslationStage extends Stage {
             }
             else {
                 Platform.runLater(() -> {
-                    Alert alert = new Alert(Alert.AlertType.ERROR, "Please Choose A File First", ButtonType.OK);
+                    Alert alert = new Alert(Alert.AlertType.ERROR, "Please Choose A File First!", ButtonType.OK);
+                    alert.setHeaderText("Source Error");
                     alert.show();
                 });
             }
