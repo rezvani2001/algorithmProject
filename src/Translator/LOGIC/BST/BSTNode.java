@@ -47,10 +47,12 @@ public class BSTNode {
 
     public VBox getGUINode() {
         VBox pane = new VBox(10);
+        pane.setId("MainTreePane");
 
         VBox leftBox = new VBox(10);
 
         Button button = new Button("key: " + this.key + "\nmeaning: " + this.value);
+        button.setId("TreeNodeButton");
         button.setPrefSize(150, 55);
 
         VBox rightBox = new VBox(10);
