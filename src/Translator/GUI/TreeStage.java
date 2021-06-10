@@ -42,7 +42,9 @@ public class TreeStage extends Stage {
         pane.setCenter(treePane);
         pane.setLeft(buttonPane);
         this.setTitle("Word Tree Nodes");
-        this.setScene(new Scene(pane));
+        Scene treeStageScene = new Scene(pane);
+        treeStageScene.getStylesheets().add("Translator/GUI/CssFiles/TreeStageCssFile.css");
+        this.setScene(treeStageScene);
         this.setWidth(1250);
         this.setHeight(800);
         this.setResizable(false);
