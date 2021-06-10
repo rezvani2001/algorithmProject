@@ -37,6 +37,7 @@ public class MainStage extends Stage {
         Text englishTextObj = new Text("English Text : ");
         englishTextObj.setFont(Font.font(null, FontWeight.BOLD, 24));
         TextArea englishTextArea = new TextArea();
+        englishTextArea.setWrapText(true);
         englishTextArea.setId("englishInputText");
         englishTextArea.setPrefSize(485, 300);
         englishTextArea.setPrefSize(TEXT_AREA_WIDTH, TEXT_AREA_HEIGHT);
@@ -55,6 +56,7 @@ public class MainStage extends Stage {
         farsiTextObj.setFont(Font.font(null, FontWeight.BOLD, 24));
         TextArea farsiTextArea = new TextArea();
         farsiTextArea.setPrefSize(485, 300);
+        farsiTextArea.setWrapText(true);
         farsiTextArea.setId("farsiTranslationText");
         farsiTextArea.setPrefSize(TEXT_AREA_WIDTH, TEXT_AREA_HEIGHT);
         farsiTextArea.setPromptText("Farsi Translation of The English Text.");
