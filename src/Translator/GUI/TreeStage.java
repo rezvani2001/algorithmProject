@@ -14,14 +14,18 @@ import javafx.stage.Stage;
 public class TreeStage extends Stage {
     public TreeStage() {
         BorderPane pane = new BorderPane();
+        pane.setId("MainTreeStagePane");
 
         VBox buttonBox = new VBox(10);
+        buttonBox.setId("TreeStageButtons");
         buttonBox.setPadding(new Insets(20));
         buttonBox.setAlignment(Pos.CENTER);
         ScrollPane buttonPane = new ScrollPane(buttonBox);
+        buttonPane.setId("ButtonsScrollPane");
         buttonPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 
         ScrollPane treePane = new ScrollPane();
+        treePane.setId("TreePane");
         treePane.setPadding(new Insets(20));
 
         for (int i = 0; i < 26 ; i++) {
@@ -42,7 +46,9 @@ public class TreeStage extends Stage {
         pane.setCenter(treePane);
         pane.setLeft(buttonPane);
         this.setTitle("Word Tree Nodes");
-        this.setScene(new Scene(pane));
+        Scene treeStageScene = new Scene(pane);
+        treeStageScene.getStylesheets().add("Translator/GUI/CssFiles/TreeStageCssFile.css");
+        this.setScene(treeStageScene);
         this.setWidth(1250);
         this.setHeight(800);
         this.setResizable(false);

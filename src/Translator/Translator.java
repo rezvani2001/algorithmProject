@@ -2,21 +2,15 @@ package Translator;
 
 import Translator.File.FileTranslator;
 import Translator.GUI.MainStage;
-import Translator.GUI.TreeStage;
 import Translator.LOGIC.LoadTree;
 import Translator.Logger.LogInfo;
 import Translator.Logger.Logger;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
-import javafx.scene.control.DateCell;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.util.Arrays;
-import java.util.Date;
-
-//one static OBST object and the translate method
+// one static OBST object and the translate method
 // uses that to translate a string and return its value
 
 public class Translator extends Application {
@@ -40,9 +34,7 @@ public class Translator extends Application {
         stage.showAndWait();
 
         //destructor
-        stage.setOnCloseRequest(event ->{
-            logger.closeStream();
-        });
+        stage.setOnCloseRequest(event -> logger.closeStream());
         //destructor
     }
 
@@ -58,11 +50,11 @@ public class Translator extends Application {
         } else {
             String[] words = value.split(" ");
 
-            for (int j = 0; j < words.length; j++) {
-                if(!isWord(words[j])){
-                    result.append(words[j]).append(' ');
-                }else{
-                    result.append(LoadTree.search(words[j])).append(' ');
+            for (String word : words) {
+                if (!isWord(word)) {
+                    result.append(word).append(' ');
+                } else {
+                    result.append(LoadTree.search(word)).append(' ');
                 }
 
             }
@@ -83,13 +75,10 @@ public class Translator extends Application {
     }
 
     public void showAlert(String message, Alert.AlertType alertType) {
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                Alert alert = new Alert(alertType);
-                alert.setContentText(message);
-                alert.showAndWait();
-            }
+        Platform.runLater(() -> {
+            Alert alert = new Alert(alertType);
+            alert.setContentText(message);
+            alert.showAndWait();
         });
 
     }

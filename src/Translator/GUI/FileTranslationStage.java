@@ -2,8 +2,6 @@ package Translator.GUI;
 
 import Translator.Translator;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -46,30 +44,6 @@ public class FileTranslationStage extends Stage {
         englishFileBox.setSpacing(30d);
         //#engFileSelection
 //======================================================================================================================
-        //TranslatedFileSection
-
-/*
-        TextField translatedFilePathTextField = new TextField();
-        Button translatedFileSelectionButton = new Button("Select Destination");
-        translatedFileSelectionButton.setPrefSize(BUTTON_WIDTH, BUTTON_HEIGHT);
-
-        translatedFileSelectionButton.setOnAction(event -> {
-            FileChooser fileChooser = new FileChooser();
-
-            fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter(
-                    "TEXT files(*.txt)" , "*.txt"));
-
-            File selectedFile = fileChooser.showSaveDialog(this);
-            if (selectedFile != null){
-                translatedFilePathTextField.setText(selectedFile.getAbsolutePath());
-            }
-        });
-
-        HBox translatedFileBox = new HBox(translatedFileText, translatedFilePathTextField, translatedFileSelectionButton);
-        translatedFileBox.setAlignment(Pos.CENTER_LEFT);
-        translatedFileBox.setSpacing(15d);*/ // !!NOT GOING TO ASK FOR A SECOND FILE!!
-        //#TranslatedFileSection
-//======================================================================================================================
         //TranslateButton
         Button translateButton = new Button("Translate");
         translateButton.setPrefSize(BUTTON_WIDTH, BUTTON_HEIGHT);
@@ -77,8 +51,7 @@ public class FileTranslationStage extends Stage {
             if (!engFilePathTextField.getText().equals("")) {
                 mainRef.translateFile(selectedFile.get().getPath());
                 Platform.runLater(() -> getThis().close());
-            }
-            else {
+            } else {
                 Platform.runLater(() -> {
                     Alert alert = new Alert(Alert.AlertType.ERROR, "Please Choose A File First!", ButtonType.OK);
                     alert.setHeaderText("Source Error");
