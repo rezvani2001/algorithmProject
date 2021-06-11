@@ -14,6 +14,9 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.util.concurrent.atomic.AtomicReference;
 
+/**
+ * the stage in which the source file path for file translation is taken
+ */
 
 public class FileTranslationStage extends Stage {
     private final static double BUTTON_WIDTH = 150;

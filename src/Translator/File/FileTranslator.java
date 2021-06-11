@@ -8,13 +8,25 @@ import javafx.scene.control.Alert;
 
 import java.io.*;
 
+/**
+ * Translate a whole file using {@link Translator#translate(String)} for each word that is in the file
+ */
+
 public class FileTranslator {
 
     Translator mainRef;
 
+
     public FileTranslator(Translator mainRef) {
         this.mainRef = mainRef;
     }
+
+    /**
+     * takes a source file path and a dest file path and calls {@link Translator#translate(String)} on each word
+     * in source file and stores the result in the dest file
+     * @param sourceFilePath source file from which the words will be read
+     * @param destinationFilePath dest file to which the translated words will be written to
+     */
 
     public void translate(String sourceFilePath, String destinationFilePath) {
         new Thread(() -> {
