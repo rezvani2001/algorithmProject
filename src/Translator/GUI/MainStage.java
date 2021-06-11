@@ -94,7 +94,7 @@ public class MainStage extends Stage {
             fTS.showAndWait();
         });
 
-        //TODO : use fileChooser and get a file and translate it and write it to file
+
 
         Button seeTreeButton = new Button("See Tree");
         seeTreeButton.setPrefSize(BUTTONS_WIDTH, BUTTONS_HEIGHT);
@@ -108,13 +108,12 @@ public class MainStage extends Stage {
                 getThis().show();
             });
         });
-        //TODO : open treeStage and make this its owner
+
 
         Button exitButton = new Button("Exit");
         exitButton.setPrefSize(BUTTONS_WIDTH, BUTTONS_HEIGHT);
         exitButton.setOnAction(event -> {
             Alert exitAlert = new Alert(Alert.AlertType.CONFIRMATION);
-            //TODO : check if a file is being translated
             exitAlert.setTitle("Exit Confirmation");
             exitAlert.setHeaderText("Do You Want To Exit?");
             exitAlert.setContentText("You Are About To Exit The Translator!");

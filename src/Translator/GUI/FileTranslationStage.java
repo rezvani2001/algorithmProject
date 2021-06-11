@@ -29,7 +29,6 @@ public class FileTranslationStage extends Stage {
         AtomicReference<File> selectedFile = new AtomicReference<>();
         Button englishFileSelectionButton = new Button("Select Source");
         englishFileSelectionButton.setPrefSize(BUTTON_WIDTH, BUTTON_HEIGHT);
-        //TODO : SADRA : make buttons work
         englishFileSelectionButton.setOnAction(event -> {
             FileChooser fileChooser = new FileChooser();
 

@@ -20,7 +20,6 @@ public class FileTranslator {
             @Override
             public void run() {
                 try {
-                    //TODO : for sadra : recheck this i cant remember if i wrote this completely or not!
                     BufferedReader reader = new BufferedReader(new FileReader(sourceFilePath));
                     BufferedWriter writer = new BufferedWriter(new FileWriter(destinationFilePath));
                     while (!reader.ready()) {
