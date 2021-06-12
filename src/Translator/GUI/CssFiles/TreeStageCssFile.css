@@ -13,6 +13,7 @@
 
 #TreeStageButtons .button:hover {
     -fx-background-color: blue;
+    -fx-text-fill: white;
 }
 
 #TreeNodeButton {
@@ -22,6 +23,7 @@
     -fx-background-radius: 10px;
 }
 
-#TreePane {
+#TreeNodeButton:hover {
     -fx-background-color: lightgreen;
+    -fx-text-fill: black;
 }
