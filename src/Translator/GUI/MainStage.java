@@ -15,6 +15,10 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+/**
+ * first and main Stage that opens up when app starts other stages will have this stage as owner
+ */
+
 public class MainStage extends Stage {
 
     private static final double BUTTONS_WIDTH = 170d;

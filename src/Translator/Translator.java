@@ -69,10 +69,21 @@ public class Translator extends Application {
         return result.toString();
     }
 
+    /**
+     * instantiates one obj of class {@link FileTranslator} and class its translate method with the given file path
+     * @param filePath path of the file that will be translated
+     */
+
     public void translateFile(String filePath){
         FileTranslator fT = new FileTranslator(this);
         fT.translate(filePath , filePath + "\\..\\(translated).txt");
     }
+
+    /**
+     * shows and alert to the user
+     * @param message message to be in context section of the alert
+     * @param alertType the alertType property of the Alert
+     */
 
     public void showAlert(String message, Alert.AlertType alertType) {
         Platform.runLater(() -> {
@@ -83,6 +94,11 @@ public class Translator extends Application {
 
     }
 
+    /**
+     * checks if the given string has other values than just english letters
+     * @param str value to be checked if is an english word or not
+     * @return true if only contains eng letters, false otherwise
+     */
     private boolean isWord(String str){
         for (int i = 0; i < str.length(); i++) {
             if(str.charAt(i) > 122 || str.charAt(i) < 97) return false;
