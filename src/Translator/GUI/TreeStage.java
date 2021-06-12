@@ -35,6 +35,7 @@ public class TreeStage extends Stage {
 
             button.setOnAction(event -> {
                 VBox treeBox = new VBox(10);
+                treeBox.setId("TreeBox");
                 treePane.setContent(treeBox);
                 treeBox.getChildren().addAll(
                         LoadTree.optimalBST[Integer.parseInt(button.getAccessibleHelp())].root.getGUINode());

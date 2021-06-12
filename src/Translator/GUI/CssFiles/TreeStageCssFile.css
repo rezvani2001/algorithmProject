@@ -14,3 +14,14 @@
 #TreeStageButtons .button:hover {
     -fx-background-color: blue;
 }
+
+#TreeNodeButton {
+    -fx-background-color: green;
+    -fx-text-fill: white;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+}
+
+#TreePane {
+    -fx-background-color: lightgreen;
+}
