@@ -10,6 +10,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+/**
+ * the Stage in which the {@link Translator.LOGIC.WordNode WordNodes} of the translation tree are shown
+ */
 
 public class TreeStage extends Stage {
     public TreeStage() {

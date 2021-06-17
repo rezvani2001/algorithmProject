@@ -38,6 +38,13 @@ public class Translator extends Application {
         //destructor
     }
 
+    /**
+     * takes in a string and removes untranslatable values from it and then translates using {@link LoadTree}
+     * it and returns it
+     * @param value the string that will be translated
+     * @return farsi translation of the given english string
+     */
+
     public String translate(String value) {
         long time = System.currentTimeMillis();
         StringBuilder result = new StringBuilder();
@@ -96,7 +103,7 @@ public class Translator extends Application {
 
     /**
      * checks if the given string has other values than just english letters
-     * @param str value to be checked if is an english word or not
+     * @param str value to be checked if it is an english word or not
      * @return true if only contains eng letters, false otherwise
      */
     private boolean isWord(String str){
@@ -109,6 +116,11 @@ public class Translator extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
+    /**
+     * uses {@link Translator#logger} to log an obj of {@link LogInfo} to file
+     * @param logInfo the obj that the content of which will be logged
+     */
 
     public void log(LogInfo logInfo) {
         logger.log(logInfo);
