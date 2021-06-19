@@ -70,11 +70,11 @@ public class BSTNode {
         if (word.key.compareTo(this.key) > 0) {
             if (this.left == null) {
                 this.left = new BSTNode(word, this.depth + 1);
-            }
+            } else this.left.insertNode(word);
         } else if (word.key.compareTo(this.key) < 0) {
             if (this.right == null) {
                 this.right = new BSTNode(word, this.depth + 1);
-            }
+            } else this.right.insertNode(word);
         }
     }
 

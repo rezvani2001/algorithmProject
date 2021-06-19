@@ -30,7 +30,7 @@ public class LoadTree {
      * then it generates a optimal-BST for all the words that starts with the same letter
      * at the end there will be 26 different BSTs.
      *
-     * @return
+     * @return loading tree time.
      * @throws FileNotFoundException
      */
     public static long loadTree() throws FileNotFoundException {
@@ -68,7 +68,7 @@ public class LoadTree {
      * and returns the translation of it, if there is no match, it returns "?"
      *
      * @param key
-     * @return
+     * @return translation
      */
     public static String search(String key) {
         if (key.charAt(0) < 97 || key.charAt(0) > 122) return "?";
