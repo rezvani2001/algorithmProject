@@ -7,17 +7,49 @@ import javafx.scene.layout.VBox;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
-
+/**
+ * this class represents the structure of BST nodes.
+ */
 public class BSTNode {
+    /**
+     * the possibility of the related {@link WordNode word}
+     */
     public double possibility;
+
+    /**
+     * the key( english form) of the related {@link WordNode word}
+     */
     public String key;
+
+    /**
+     * the translation of the related {@link WordNode word}
+     */
     public String value;
+
+    /**
+     * the depth of the node in {@link MyBST tree}
+     */
     public int depth;
 
+    /**
+     * the node which its key is bigger than the key of this object( the left node)
+     */
     public BSTNode left;
+
+    /**
+     * the node which its key is smaller than the key of this object( the right node)
+     */
     public BSTNode right;
 
 
+    /**
+     * the constructor of the word.
+     *
+     * gets a {@link WordNode word} and the depth from top of the {@link MyBST tree} and makes the asked node.
+     *
+     * @param word
+     * @param depth
+     */
     public BSTNode(WordNode word, int depth) {
         this.possibility = word.possibility;
         this.key = word.key;
@@ -26,25 +58,34 @@ public class BSTNode {
         this.left = this.right = null;
     }
 
-    public double insertNode(WordNode word) {
+
+    /**
+     * this method sets the given {@link WordNode word} in the right place in the {@link MyBST tree}
+     * by passing it all the way down till a empty space founded.
+     *
+     * @param word
+     */
+    public void insertNode(WordNode word) {
 
         if (word.key.compareTo(this.key) > 0) {
             if (this.left == null) {
                 this.left = new BSTNode(word, this.depth + 1);
-                return this.left.worth();
-            } else return left.insertNode(word);
+            }
         } else if (word.key.compareTo(this.key) < 0) {
             if (this.right == null) {
                 this.right = new BSTNode(word, this.depth + 1);
-                return this.right.worth();
-            } else return this.right.insertNode(word);
-        } else return 0.0;
+            }
+        }
     }
 
-    public double worth() {
-        return this.possibility * this.depth;
-    }
 
+    /**
+     * this method makes and returns the GUI of this node to be shown in tree view.
+     * when client clicks on GUI of this node, the GUI of left node will be appeared on top of it
+     * and the GUI of right node will be appeared bellow it.
+     *
+     * @return {@link VBox} to be shown in tree view.
+     */
     public VBox getGUINode() {
         VBox pane = new VBox(10);
         pane.setId("MainTreePane");
@@ -65,7 +106,6 @@ public class BSTNode {
                     AnchorPane anchorPane = new AnchorPane();
                     VBox child = this.left.getGUINode();
                     anchorPane.getChildren().addAll(child);
-//                    anchorPane.setStyle("-fx-border-width: 2; -fx-border-color: black");
 
                     AnchorPane.setLeftAnchor(child, 100.0);
 
@@ -76,7 +116,6 @@ public class BSTNode {
                     AnchorPane anchorPane = new AnchorPane();
                     VBox child = this.right.getGUINode();
                     anchorPane.getChildren().addAll(child);
-//                    anchorPane.setStyle("-fx-border-width: 2; -fx-border-color: black");
 
                     AnchorPane.setLeftAnchor(child, 100.0);
 
@@ -99,7 +138,15 @@ public class BSTNode {
     }
 
 
-
+    /**
+     * this method looks for the given {@link String key} in the tree.
+     * if the key is equal to the key of this object, it returns the translation.
+     * if not, if the key is bigger than the object's key, it tells to the left node to look for the key,
+     * else, it tells to the right one to do the job.
+     *
+     * @param key
+     * @return translation of the given key
+     */
     public String search(String key){
         if (this.key.equals(key)){
             return this.value;

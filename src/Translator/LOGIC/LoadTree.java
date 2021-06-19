@@ -8,10 +8,31 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * the class that makes and stores the optimal-BST of the given words.
+ */
 public class LoadTree {
+    /**
+     * the static field that stores the bst.
+     *
+     * it is static because in all of the project we have only one optimal-BST.
+     */
     public static MyBST[] optimalBST;
+
+    /**
+     * holds the time that toke to make the optimal bst.
+     */
     public static long buildTime;
 
+
+    /**
+     * this method reads all the words from the given file,
+     * then it generates a optimal-BST for all the words that starts with the same letter
+     * at the end there will be 26 different BSTs.
+     *
+     * @return
+     * @throws FileNotFoundException
+     */
     public static long loadTree() throws FileNotFoundException {
         long time = System.currentTimeMillis();
 
@@ -41,6 +62,14 @@ public class LoadTree {
         return buildTime;
     }
 
+
+    /**
+     * this method searches the given key in the BST that contains words with the same starting letter
+     * and returns the translation of it, if there is no match, it returns "?"
+     *
+     * @param key
+     * @return
+     */
     public static String search(String key) {
         if (key.charAt(0) < 97 || key.charAt(0) > 122) return "?";
         return optimalBST[key.charAt(0) - 97].search(key);
